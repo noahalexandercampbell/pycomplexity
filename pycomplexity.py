@@ -95,9 +95,7 @@ class _ComplexityVisitor(ast.NodeVisitor):
         ast.NodeVisitor.generic_visit(self, node)
 
 
-def _analyze_file(
-    filepath: str, threshold: ThresholdConfig
-) -> FileReport:
+def _analyze_file(filepath: str, threshold: ThresholdConfig) -> FileReport:
     source = Path(filepath).read_text(encoding="utf-8")
     tree = ast.parse(source, filename=filepath)
     reports: list[FunctionReport] = []

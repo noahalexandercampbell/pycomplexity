@@ -4,10 +4,13 @@ from __future__ import annotations
 
 import pathlib
 
-import pytest
-
-import pycomplexity
-from pycomplexity import FileReport, FunctionReport, ThresholdConfig, analyze, to_json
+from pycomplexity import (
+    FileReport,
+    FunctionReport,
+    ThresholdConfig,
+    analyze,
+    to_json,
+)
 
 
 def _write(tmp_path: pathlib.Path, name: str, content: str) -> pathlib.Path:
@@ -155,7 +158,14 @@ def test_non_py_files_are_skipped(tmp_path: pathlib.Path) -> None:
 def test_to_json_contains_expected_keys() -> None:
     report = FileReport(
         filepath="example.py",
-        functions=[FunctionReport(name="foo", lineno=1, complexity=1, filepath="example.py")],
+        functions=[
+            FunctionReport(
+                name="foo",
+                lineno=1,
+                complexity=1,
+                filepath="example.py",
+            )
+        ],
     )
     payload = to_json([report])
     assert "example.py" in payload

@@ -9,7 +9,7 @@ description = "AST-based cyclomatic complexity analyzer for Python source files"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
-authors = [{name = "ProjectCreationAgent"}]
+authors = [{name = "Dr. Noah Alexander Campbell", email = "292663496+noahalexandercampbell@users.noreply.github.com"}]
 keywords = ["complexity", "static-analysis", "ast", "cli"]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -17,16 +17,25 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 
 [project.scripts]
 pycomplexity = "pycomplexity_cli:main"
 
 [project.optional-dependencies]
-dev = ["pytest>=7"]
+dev = ["pytest>=7", "ruff>=0.9"]
 
 [tool.setuptools]
 py-modules = ["pycomplexity", "pycomplexity_cli"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]

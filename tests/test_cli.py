@@ -3,13 +3,11 @@
 from __future__ import annotations
 
 import pathlib
-import subprocess
-import sys
+
 import pytest
 
-import pycomplexity
-from pycomplexity import analyze, to_json
-from pycomplexity_cli import main, _build_parser
+from pycomplexity import analyze
+from pycomplexity_cli import _build_parser, main
 
 
 def _write(tmp_path: pathlib.Path, name: str, content: str) -> pathlib.Path:
@@ -52,7 +50,9 @@ def test_custom_thresholds(tmp_path: pathlib.Path) -> None:
     assert main([str(target), "--warn", "2", "--error", "10"]) == 1
 
 
-def test_json_flag_prints_json(tmp_path: pathlib.Path, capsys: pytest.CaptureFixture[str]) -> None:
+def test_json_flag_prints_json(
+    tmp_path: pathlib.Path, capsys: pytest.CaptureFixture[str]
+) -> None:
     target = _write(
         tmp_path,
         "sample.py",
